@@ -1,6 +1,9 @@
 package domain
 
-import "time"
+import (
+	"strings"
+	"time"
+)
 
 type RuleStatus string
 
@@ -48,7 +51,7 @@ func (r *Rule) Matches(item *RightsCase) bool {
 	}
 	matched := false
 	if r.MatchCategory != "" {
-		if item.Category == r.MatchCategory {
+		if item.NormalizedCategory() == strings.TrimSpace(r.MatchCategory) {
 			matched = true
 		} else {
 			return false

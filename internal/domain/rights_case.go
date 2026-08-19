@@ -2,6 +2,7 @@ package domain
 
 import (
 	"fmt"
+	"strings"
 	"time"
 )
 
@@ -114,6 +115,10 @@ func (i *RightsCase) Validate() error {
 		return ValidationError{Field: "deadline", Message: "must not be zero"}
 	}
 	return nil
+}
+
+func (i *RightsCase) NormalizedCategory() string {
+	return strings.TrimSpace(i.Category)
 }
 
 type ItemFilter struct {

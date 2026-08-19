@@ -51,7 +51,8 @@ func (r *Rule) Matches(item *RightsCase) bool {
 	}
 	matched := false
 	if r.MatchCategory != "" {
-		if item.NormalizedCategory() == strings.TrimSpace(r.MatchCategory) {
+		normalizedRule := strings.ToLower(strings.TrimSpace(r.MatchCategory))
+		if item.NormalizedCategory() == normalizedRule {
 			matched = true
 		} else {
 			return false

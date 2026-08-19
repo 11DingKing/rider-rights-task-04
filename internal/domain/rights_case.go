@@ -118,7 +118,11 @@ func (i *RightsCase) Validate() error {
 }
 
 func (i *RightsCase) NormalizedCategory() string {
-	return strings.TrimSpace(i.Category)
+	value := strings.TrimSpace(i.Category)
+	if value == "" {
+		return ""
+	}
+	return strings.ToLower(value)
 }
 
 type ItemFilter struct {

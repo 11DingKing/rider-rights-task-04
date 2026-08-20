@@ -1,7 +1,6 @@
 package domain
 
 import (
-	"strings"
 	"time"
 )
 
@@ -51,7 +50,7 @@ func (r *Rule) Matches(item *RightsCase) bool {
 	}
 	matched := false
 	if r.MatchCategory != "" {
-		if item.NormalizedCategory() == strings.TrimSpace(r.MatchCategory) {
+		if item.NormalizedCategory() == NormalizeCategory(r.MatchCategory) {
 			matched = true
 		} else {
 			return false

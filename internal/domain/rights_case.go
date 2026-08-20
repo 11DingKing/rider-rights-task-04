@@ -117,8 +117,16 @@ func (i *RightsCase) Validate() error {
 	return nil
 }
 
+// NormalizeCategory tidies a category string so that manually entered values
+// match dispatch rules even when they differ in surrounding whitespace,
+// internal spacing, or letter case. It trims surrounding whitespace,
+// collapses internal whitespace runs to a single space, and lowercases.
+func NormalizeCategory(s string) string {
+	return strings.ToLower(strings.Join(strings.Fields(s), " "))
+}
+
 func (i *RightsCase) NormalizedCategory() string {
-	return strings.TrimSpace(i.Category)
+	return NormalizeCategory(i.Category)
 }
 
 type ItemFilter struct {
